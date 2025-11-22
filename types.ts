@@ -9,15 +9,18 @@ export interface FlashcardResponse {
   back: string;
 }
 
-export enum AppMode {
-  EDITOR = 'EDITOR',
-  THEME = 'THEME'
+export enum ThemeType {
+  VISTA = 'VISTA',
+  MACOS = 'MACOS',
+  NOTEBOOK = 'NOTEBOOK',
+  FINANCE = 'FINANCE',
+  UFE = 'UFE'
 }
 
 export interface CardTheme {
-  frontBg: string;
-  backBg: string;
-  textColor: string;
-  headerFront: string;
-  headerBack: string;
+  type: ThemeType;
+  name: string;
+  frontBg?: string;
+  backBg?: string;
+  textColor?: string;
 }
