@@ -1,11 +1,10 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { VistaWindow } from './components/VistaWindow';
 import { VistaButton } from './components/VistaButton';
 import { Flashcard } from './components/Flashcard';
 import { ExportCard } from './components/ExportCard';
 import { FlashcardData, CardTheme } from './types';
-import { generateFlashcardsFromTopic } from './services/geminiService';
 
 // Initial Mock Data
 const INITIAL_CARDS: FlashcardData[] = [
@@ -37,10 +36,6 @@ export default function App() {
   const [selectedCardId, setSelectedCardId] = useState<string | null>(INITIAL_CARDS[0].id);
   const [theme, setTheme] = useState<CardTheme>(DEFAULT_THEME);
   
-  // Generator State
-  const [topic, setTopic] = useState('');
-  const [isGenerating, setIsGenerating] = useState(false);
-
   // Export State
   const [isExporting, setIsExporting] = useState(false);
   const [exportStatus, setExportStatus] = useState('');
@@ -76,26 +71,6 @@ export default function App() {
     setCards(newCards);
     if (selectedCardId === id && newCards.length > 0) {
       setSelectedCardId(newCards[0].id);
-    }
-  };
-
-  const handleGenerate = async () => {
-    if (!topic.trim()) return;
-    setIsGenerating(true);
-    try {
-      const generated = await generateFlashcardsFromTopic(topic);
-      const newCards = generated.map((c, i) => ({
-        id: `gen-${Date.now()}-${i}`,
-        front: c.front,
-        back: c.back
-      }));
-      setCards(prev => [...prev, ...newCards]);
-      setTopic('');
-      if (newCards.length > 0) setSelectedCardId(newCards[0].id);
-    } catch (err) {
-      alert("Failed to generate cards");
-    } finally {
-      setIsGenerating(false);
     }
   };
 
@@ -215,25 +190,6 @@ export default function App() {
                   </button>
                 </div>
               ))}
-            </div>
-            {/* AI Generator Mini-Panel */}
-            <div className="p-3 border-t border-[#a0a0a0] bg-[#e3e3e3]">
-               <label className="text-[10px] font-bold text-slate-600 uppercase block mb-1">Auto-Gen Layers</label>
-               <div className="flex gap-1">
-                 <input 
-                   className="w-full text-xs p-1 border border-slate-400 rounded-sm"
-                   placeholder="Topic..."
-                   value={topic}
-                   onChange={e => setTopic(e.target.value)}
-                 />
-                 <button 
-                    onClick={handleGenerate}
-                    disabled={isGenerating}
-                    className="bg-gradient-to-b from-green-100 to-green-200 border border-green-400 text-green-800 text-xs px-2 rounded-sm hover:brightness-95"
-                 >
-                   ⚡
-                 </button>
-               </div>
             </div>
           </div>
 
