@@ -1,0 +1,5 @@
+{
+  "name": "VistaFlash",
+  "description": "A Windows Vista-themed flashcard application powered by Gemini AI, supporting Mongolian Cyrillic text.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VistaFlash</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+Mongolian&display=swap" rel="stylesheet">
+    <!-- Export Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <style>
+      body {
+        font-family: 'Segoe UI', 'Inter', 'Noto Sans Mongolian', sans-serif;
+        /* Vista-esque Default Background if image fails */
+        background: rgb(2,0,36);
+        background: linear-gradient(160deg, rgba(2,0,36,1) 0%, rgba(9,75,121,1) 35%, rgba(0,212,255,1) 100%);
+        margin: 0;
+        overflow: hidden; /* Prevent body scroll, handle in window */
+      }
+      
+      /* Custom Scrollbar for the Vista feel */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f0f0f0;
+        border-left: 1px solid #dcdcdc;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #c2c2c2;
+        border: 1px solid #fff;
+        border-radius: 6px;
+        box-shadow: inset 1px 0 0 #f0f0f0;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: #a8a8a8;
+      }
+
+      /* Perspective for card flip */
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .transform-style-3d {
+        transform-style: preserve-3d;
+      }
+      .backface-hidden {
+        backface-visibility: hidden;
+      }
+      .rotate-y-180 {
+        transform: rotateY(180deg);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
