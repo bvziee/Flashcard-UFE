@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { CardTheme, ThemeType } from '../types';
-import { getQuoteForCard } from '../data/quotes';
 
 interface ExportCardProps {
   id: string;
@@ -325,8 +324,6 @@ export const ExportCard: React.FC<ExportCardProps> = ({ id, text, type, theme })
   const offsetX = theme.textOffsetX || 0;
   const offsetY = theme.textOffsetY || 0;
 
-  const quote = getQuoteForCard(id);
-
   return (
     <div 
       className="relative flex flex-col overflow-hidden shadow-none box-border"
@@ -366,18 +363,6 @@ export const ExportCard: React.FC<ExportCardProps> = ({ id, text, type, theme })
                 >
                   {text}
                 </div>
-             </div>
-
-            {/* Motivational Quote - Larger Size */}
-             <div 
-               className="absolute bottom-4 left-5 max-w-[80%] z-20 opacity-90"
-               style={{ 
-                 color: finalTextColor,
-                 fontFamily: '"Marck Script", cursive'
-               }}
-             >
-                <p className="text-2xl leading-none">"{quote.text}"</p>
-                <p className="text-lg text-right mt-1">- {quote.author}</p>
              </div>
 
              {/* Footer Info */}

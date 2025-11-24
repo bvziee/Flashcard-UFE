@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import { FlashcardData, CardTheme, ThemeType } from '../types';
-import { getQuoteForCard } from '../data/quotes';
 
 interface FlashcardProps {
   data: FlashcardData;
@@ -358,8 +357,6 @@ export const Flashcard: React.FC<FlashcardProps> = ({ data, theme, className = '
   const frontBaseSize = isLandscape ? 3.5 : 4.5;
   const backBaseSize = isLandscape ? 1.8 : 2.5;
 
-  const quote = getQuoteForCard(data.id);
-
   return (
     <div 
       className={`perspective-1000 ${widthClass} ${heightClass} cursor-pointer group ${className}`}
@@ -420,18 +417,6 @@ export const Flashcard: React.FC<FlashcardProps> = ({ data, theme, className = '
                     {data.front}
                   </h3>
                 </div>
-
-                {/* MOTIVATIONAL QUOTE - UPDATED */}
-                 <div 
-                   className="absolute bottom-4 left-5 max-w-[80%] z-20 opacity-90 pointer-events-none"
-                   style={{ 
-                     color: textColor,
-                     fontFamily: '"Marck Script", cursive'
-                   }}
-                 >
-                    <p className="text-2xl leading-none drop-shadow-md">"{quote.text}"</p>
-                    <p className="text-lg text-right mt-1">- {quote.author}</p>
-                 </div>
 
                 {/* Bottom Info */}
                 {theme?.type !== ThemeType.CYBERPUNK && (
@@ -497,18 +482,6 @@ export const Flashcard: React.FC<FlashcardProps> = ({ data, theme, className = '
                    </p>
                  </div>
                  
-                 {/* Quote on Back */}
-                 <div 
-                   className="absolute bottom-4 left-5 max-w-[80%] z-20 opacity-90 pointer-events-none"
-                   style={{ 
-                     color: textColor,
-                     fontFamily: '"Marck Script", cursive'
-                   }}
-                 >
-                    <p className="text-2xl leading-none drop-shadow-md">"{quote.text}"</p>
-                    <p className="text-lg text-right mt-1">- {quote.author}</p>
-                 </div>
-
              </div>
           </div>
 
